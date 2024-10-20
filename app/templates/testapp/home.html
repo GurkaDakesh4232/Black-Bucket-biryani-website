@@ -1,0 +1,124 @@
+{% extends 'testapp/base.html' %}
+{% load static  %}
+{% block title %} BIRYANI {% endblock title %}
+
+{% block banner_slider %} 
+
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'app/images/banner/b1.jpg'%}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/b2.jpg'%}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/b3.jpg'%}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/b4.jpg'%}" class="d-block w-100" alt="...">
+        
+        
+      </div>
+    </div>
+  </div>
+{% endblock banner_slider %} 
+
+{% block information %} 
+<div class="container">
+  <div class="rwo bg-success text-center p-5 text-white border-bottom shadow">
+    <h1>Items </h1>
+    <small class="fs-5">
+      Biryani is a delicious rice dish peppered with scrumptious spices
+       like saffron and cumin and further layered with spiced meat or veggie
+        protein. Typically, this layered rice dish is enriched with added yogurt
+         or ghee, a clarified butter, for an extra boost of luxurious flavor.
+    </small>
+</div>
+{% endblock information %}
+
+{% block main-content %} 
+<div class="container">
+  
+<br><br/>
+ 
+
+
+
+
+<div class="row">
+  <div class="col-md-4 col-sm-4 mi-go wow fadeInUp">
+     <div class="goodnessec buttermilk smb">
+       <a href="{% url 'category' 'CB'%}">
+         <div class="goodnesscount text-center">
+           <img src="{% static 'app/images/product/chibucket.png'%}" class="img-responsive">
+           <p class="mlkpro">Chicken</p>
+         </div>
+        </a>
+      </div>  
+    </div>  
+    
+  <div class="col-md-4 col-sm-4 mi-go wow fadeInUp">
+     <div class="goodnessec buttermilk curdbgpro">
+       <a href="{% url 'category' 'MB'%}">
+         <div class="goodnesscount text-center">
+           <img src="{% static 'app/images/product/muttonbucket.png'%}" class="img-responsive">
+           <p class="mlkpro">Mutton</p>
+         </div>
+        </a>
+      </div>  
+    </div>    
+
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp">
+     <div class="goodnessec buttermilk pro1">
+       <a href="{% url 'category' 'FB'%}">
+         <div class="goodnesscount text-center">
+           <img src="{% static 'app/images/product/fishbucket.png'%}" class="img-responsive">
+           <p class="mlkpro">Fish</p>
+         </div>
+        </a>
+      </div>  
+    </div>    
+</div>
+
+<br><br>
+<div class="row">
+  <div class="col-md-4 col-sm-4 mi-go wow fadeInUp">
+     <div class="goodnessec buttermilk pro">
+       <a href="{% url 'category' 'FPB'%}">
+         <div class="goodnesscount text-center">
+           <img src="{% static 'app/images/product/frybucketbiryani.png'%}" class="img-responsive">
+           <p class="mlkpro">Frypiece</p>
+         </div>
+        </a>
+      </div>  
+    </div>  
+
+  <div class="col-md-4 col-sm-4 mi-go wow fadeInUp">
+     <div class="goodnessec buttermilk buttermilk">
+       <a href="{% url 'category' 'PB'%}">
+         <div class="goodnesscount text-center">
+           <img src="{% static 'app/images/product/paneerbucket.png'%}" class="img-responsive">
+           <p class="mlkpro">Paneer</p>
+         </div>
+        </a>
+      </div>  
+    </div>  
+    
+
+    <div class="col-md-4 col-sm-4 mi-go wow fadeInUp">
+      <div class="goodnessec buttermilk pro1">
+        <a href="{% url 'category' 'EB'%}">
+          <div class="goodnesscount text-center">
+            <img src="{% static 'app/images/product/eggbucket.png'%}" class="img-responsive">
+            <p class="mlkpro">Egg</p>
+          </div>
+         </a>
+       </div>  
+     </div>  
+     
+</div>
+<br><br>
+
+{% endblock main-content %}

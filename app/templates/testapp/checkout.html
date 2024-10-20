@@ -1,0 +1,119 @@
+{% extends 'testapp/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+
+{% block main-content %}
+<div class="container my-5">
+    {% if messages %}
+    {% for msg in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ msg }}
+        </div>
+    {% endfor %}
+    {% endif %}
+    
+    <div class="row mt-5">
+        <div class="col-sm-6">
+            <h4>Order Summary</h4>
+            <hr>
+            {% for item in cart_items %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5>Product: {{ item.product.title }}</h5>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p class="fw-bold">Price: {{ item.product.discounted_price }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <p class="fw-bold">Total Cost + Rs. 40 = {{ totalamount }}</p>
+            <small>Term and conditions: By making a purchase or accessing the Website of Biryani By Kilo, you agree to the following Terms and Conditions.</small>
+        </div>
+        <div class="col-sm-4 offset-sm-1">
+            <h4>Select Address</h4>
+            <hr>
+            <form method="POST" id="myform">
+                {% csrf_token %}
+                
+                <!-- Address Cards with Radio Buttons Below -->
+                {% for ad in add %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>{{ ad.name }}</h5>
+                        <p>Mobile: {{ ad.mobile }}</p>
+                        <p>{{ ad.locality }}, {{ ad.city }}, {{ ad.state }} - {{ ad.pincode }}</p>
+                        <!-- Radio Button Below Address Card -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="selected_address" id="address{{ forloop.counter }}" value="{{ ad.id }}" required>
+                            <label class="form-check-label" for="address{{ forloop.counter }}">
+                                <strong>Address {{ forloop.counter }}</strong>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <div class="form-check mb-3">
+                    <label for="totalamount" class="form-label">Total Amount</label>
+                    <input type="number" class="form-control" name="totalamount" value="{{ totalamount }}" readonly>
+                </div>
+                <div class="text-end">
+                    <p class="text-center"><a href="{% url 'order_success'  %}" type="button"
+                        class="btn btn-success">Continue</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock main-content %}
+
+
+
+
+
+
+
+{% block payment-gateway %}
+
+<script>
+var options = {
+    "key": "rzp_test_1234567890abcdef", // Enter the Key ID generated from the Dashboard
+    "amount": "{{razoramount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Gurka Dakesh",
+    "description": "Order Item",
+    
+    "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        console.log("Success")
+        var form=document.getElementById("myform")
+        //alert(response.razorpay_payment_id);
+        //alert(response.razorpay_order_id);
+        //alert(response.razorpay_signature)
+        window.location.href='http://localhost:8000/paymentdone?order_id=${response.razorpay_order_id}&payment_id=${response.razorpay_payment_id}&cust_id=${form.element["custid"].value}
+    
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        
+        alert(response.error.description);
+        
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    console.log("button click");
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+{% endblock payment-gateway %}

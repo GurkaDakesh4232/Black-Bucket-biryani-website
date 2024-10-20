@@ -1,0 +1,14 @@
+{% extends 'testapp/base.html' %}
+{% block title %}Order Success{% endblock title %}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1>Order Successful!</h1>
+            <p>Thank you for your order. Your order has been placed successfully.</p>
+            <p><a href="{% url 'home' %}" class="btn btn-primary">Go to Home</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'testapp/base.html' %}
+{% load static  %}
+{% block title %}about{% endblock title %}
+
+{% block banner_slider %} 
+
+
+<div id="carouselExampleSlidesOnly" class="carousel slide"   data-bs-ride="carousel">
+    <div class="carousel-inner ">
+      <div class="carousel-item active">
+        <img src="{% static 'app/images/banner/b4.jpg'%}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/b3.jpg'%}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/b1.jpg'%}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/b2.jpg'%}" class="d-block w-100" alt="...">
+        
+        
+      </div>
+    </div>
+  </div>
+{% endblock banner_slider %} 
+
+
+{% block main-content %}
+
+<div class="container mt-4 ">
+    
+    <h2 class="text-center">Cotact Us</h2>
+    <br>
+    <div class="row-container text-center py-4" style="background-color:beige; border-radius: 50px;">
+            <p class="fs-4">
+                <i class="bi bi-geo-alt-fill"></i> Address: Near to Borabonda
+            </p>
+            <p class="fs-4">
+                <i class="bi bi-telephone-fill"></i> Contact: 7702510319
+            </p>
+            <p class="fs-4">
+                <i class="bi bi-envelope-fill"></i> Email: blackbucketbiryani.com
+            </p>
+    </div>
+</div>    
+    
+
+<br><br>
+{% endblock main-content %}
+
