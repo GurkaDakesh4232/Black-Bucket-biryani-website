@@ -1,1 +1,1 @@
-web:gunicorn ECOMPROJECT.wsgi --log-file -
+web: gunicorn ECOMPROJECT.wsgi --bind 0.0.0.0:$PORT --log-file -
